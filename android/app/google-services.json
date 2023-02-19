@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1015763935654",
+    "project_id": "usimattendanceapp",
+    "storage_bucket": "usimattendanceapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015763935654:android:36b75773fd0d695e74af67",
+        "android_client_info": {
+          "package_name": "com.example.usim_attendance_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015763935654-689b8e931ajdnglbmf7m2203ieqer00i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9hnBrXOtVuVbNLw6nOG9xPJGpjGpCcso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015763935654-689b8e931ajdnglbmf7m2203ieqer00i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1015763935654-s7nsgd9hlidf28vrp0jbtuvi942o1prs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.usimAttendanceApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

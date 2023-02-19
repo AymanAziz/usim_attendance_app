@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1015763935654-s7nsgd9hlidf28vrp0jbtuvi942o1prs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1015763935654-s7nsgd9hlidf28vrp0jbtuvi942o1prs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDZLCK194fECnUnEhYuX2vRcW2r6lFU038</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1015763935654</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.usimAttendanceApp</string>
+	<key>PROJECT_ID</key>
+	<string>usimattendanceapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>usimattendanceapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1015763935654:ios:a6778981972d9ebd74af67</string>
+</dict>
+</plist>
