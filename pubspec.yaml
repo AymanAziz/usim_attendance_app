@@ -36,14 +36,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   #nosql
-  cloud_firestore: ^4.3.1
-  firebase_auth: ^4.2.5
-  firebase_core: ^2.4.1
+  cloud_firestore: ^4.4.5
+  firebase_auth: ^4.3.0
+  firebase_core: ^2.8.0
 
   #bloc
-  flutter_bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
   equatable: ^2.0.5
-  meta: ^1.8.0
+  meta: ^1.9.0
 
   #form
   email_validator: ^2.1.17
@@ -53,10 +53,10 @@ dependencies:
 
   #check internet connection
   internet_connection_checker: ^1.0.0+1
-  firebase_app_check: ^0.1.1+8
+  firebase_app_check: ^0.1.1+14
 
   #convert to pdf
-  pdf: ^3.8.4
+  pdf: ^3.9.0
   #open pdf document
   open_file: ^3.2.1
 
@@ -73,14 +73,14 @@ dependencies:
   select_form_field: ^2.2.0
 
   #sql
-  sqflite: ^2.2.3
-  path_provider: ^2.0.11
+  sqflite: ^2.2.6
+  path_provider: ^2.0.13
 
   #1. get reminder information
   datetime_picker_formfield: ^2.0.1
   date_field: ^3.0.2
 
-  datepicker_dropdown: ^0.0.7+3
+  datepicker_dropdown: ^0.0.7+4
   flutter_picker: any
 
   date_time_picker: ^2.1.0
@@ -94,7 +94,7 @@ dependencies:
   awesome_notifications: ^0.7.4+1
 
   #check first time user
-  shared_preferences: ^2.0.17
+  shared_preferences: ^2.0.18
   flutter_onboarding_slider: ^1.0.8
 
   #huawei
@@ -103,7 +103,16 @@ dependencies:
   date_picker_timeline: ^1.2.3
 
   #graph
-  syncfusion_flutter_charts: ^20.3.47
+  syncfusion_flutter_charts: ^20.4.54
+
+  #merge pdf
+  pdf_merger: ^0.0.6
+
+  #home page carousel slider
+  carousel_slider: ^4.2.1
+
+  #slideable
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -10,6 +10,7 @@ class LabRepository {
     await db.doc(labModel.labCode).set({
       'name': labModel.name,
       'labCode': labModel.labCode,
+      'labDetails': labModel.labDetails,
     });
     return;
   }
@@ -17,7 +18,8 @@ class LabRepository {
   Future<void> updateLab(LabModel labModel ) async{
     await db.doc(labModel.labCode).update({
       'name': labModel.name,
-      'labCode': labModel.labCode,
+      // 'labCode': labModel.labCode,
+      'labDetails': labModel.labDetails,
     });
     return;
   }

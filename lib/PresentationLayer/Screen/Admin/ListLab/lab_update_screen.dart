@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:usim_attendance_app/Bloc/LabBloc/lab_bloc.dart';
 
+import '../../../../Bloc/LabBloc/lab_bloc.dart';
 import '../../../../DataLayer/Model/Firestore/LabModel/LabModel.dart';
 
-class LabAddScreen extends StatefulWidget {
-  const LabAddScreen({Key? key}) : super(key: key);
+class LabUpdateScreen extends StatefulWidget {
+  const LabUpdateScreen({Key? key}) : super(key: key);
 
   @override
-  State<LabAddScreen> createState() => _LabAddScreenState();
+  State<LabUpdateScreen> createState() => _LabUpdateScreenState();
 }
 
-class _LabAddScreenState extends State<LabAddScreen> {
-  //form
+class _LabUpdateScreenState extends State<LabUpdateScreen> {
+
   final _formKey = GlobalKey<FormState>();
   final LabBloc labBloc = LabBloc();
 
-  String name = "";
-  String labCode = "";
-  String labDetails ="";
+  String finalName = "";
+  String finalLabDetails ="";
+
   @override
   Widget build(BuildContext context) {
+    final todo = ModalRoute.of(context)?.settings.arguments as Map;
+    String labCode = todo['labCode'];
+    String name = todo['name'];
+    String labDetails = todo['labDetails'];
+
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -41,27 +45,15 @@ class _LabAddScreenState extends State<LabAddScreen> {
               children: [
                 const SizedBox(height: 60),
                 const Text(
-                  "Add Laboratory",
+                  "Update Laboratory",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 16),
-                const Expanded(
-                  child: Text(
-                    "Please be aware that once you press the Add button, you will be unable to modify your Laboratory Code. "
-                        "Therefore, we advise you to review your Laboratory Code carefully before adding it to ensure that it is"
-                        " accurate and complete",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 32),
                 TextFormField(
-                  // inputFormatters: [LengthLimitingTextInputFormatter(30)],
+                  initialValue: name,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[900] : Colors.grey[200],
@@ -76,33 +68,18 @@ class _LabAddScreenState extends State<LabAddScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Please enter Lab Name';
                     }
-                    name = value;
+                    finalName = value;
                     return null;
+                  },
+                  onSaved: (value)
+                  {
+                    finalName = value!;
                   },
                 ),///lab name
                 const SizedBox(height: 16),
+
                 TextFormField(
-                  inputFormatters: [LengthLimitingTextInputFormatter(30)],
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Theme.of(context).brightness == Brightness.dark ? Colors.grey[900] : Colors.grey[200],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                      borderSide: BorderSide.none,
-                    ),
-                    hintText: 'Lab Code',
-                    hintStyle: TextStyle(color: Colors.grey[700]),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter Lab Code';
-                    }
-                    labCode = value;
-                    return null;
-                  },
-                ),/// lab code
-                const SizedBox(height: 16),
-                TextFormField(
+                  initialValue: labDetails,
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
                   decoration: InputDecoration(
@@ -116,11 +93,12 @@ class _LabAddScreenState extends State<LabAddScreen> {
                     hintStyle: TextStyle(color: Colors.grey[700]),
                   ),
                   validator: (value) {
-                    // if (value == null || value.isEmpty) {
-                    //   return 'Please enter Lab Description';
-                    // }
-                    labDetails = value!;
+                    finalLabDetails = value!;
                     return null;
+                  },
+                  onSaved: (value)
+                  {
+                    finalLabDetails = value!;
                   },
                 ),///lab description
 
@@ -145,24 +123,18 @@ class _LabAddScreenState extends State<LabAddScreen> {
                         ),
                         child: ElevatedButton(
                           onPressed: () async {
-
-
-
-
                             if (_formKey.currentState!.validate()) {
-                              // final FirebaseAuth auth = FirebaseAuth.instance;
-                              // String? uid = auth.currentUser?.uid;
 
                               _formKey.currentState!.save();
 
                               LabModel labModel =
                               LabModel(
                                   labCode:labCode,
-                                  name:name,
-                                  labDetails: labDetails
+                                  name:finalName == ""?name:finalName,
+                                  labDetails: finalLabDetails== ""?name:finalLabDetails
                               );
 
-                               labBloc.add(AddNewLab(labModel));
+                              labBloc.add(UpdateLab(labModel));
 
                               await Future.delayed(
                                   const Duration(microseconds: 1));
@@ -176,7 +148,7 @@ class _LabAddScreenState extends State<LabAddScreen> {
                               fixedSize: const Size(300, 60),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50))),
-                          child: const Text("Add Laboratory"),
+                          child: const Text("Update Laboratory"),
                         )),
                   ),
                 ),

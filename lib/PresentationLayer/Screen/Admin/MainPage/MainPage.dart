@@ -6,8 +6,10 @@ import '../../../../Bloc/Auth/auth_bloc.dart';
 import '../../../../Bloc/BlocBasedOnPages/MainPageAdminBloc/main_page_admin_bloc.dart';
 import '../../../../DataLayer/Model/Firestore/LabModel/LabModel.dart';
 import '../../Authentication/Login.dart';
+import '../ListEquipment/ListLabEquipmentScreen.dart';
 import '../ListLab/ListLabScreen.dart';
 import '../UserAdminAndStudent/AdminandStudent.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -125,9 +127,9 @@ class _MainPageState extends State<MainPage> {
         padding: const EdgeInsets.all(5),
         child: Column(
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   "Information",
                   style: TextStyle(
@@ -290,107 +292,232 @@ class _MainPageState extends State<MainPage> {
       List<LabModel> listLabModel,
       List<UserModel> listUserModelAdmin,
       List<UserModel> listUserModelStudent) {
-    return Card(
-      // color: const Color.fromARGB(255, 64, 224, 208),
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      elevation: 1,
-      shadowColor: Colors.black,
-      child: Padding(
-        padding: const EdgeInsets.all(5),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  "Browse",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-              ],
-            ),
-            SizedBox(
-
-              child: gridView(context),
-            )
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Column(
+        children: [
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Browse",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+            ],
+          ),
+          gridView(context)
+        ],
       ),
     );
   }
 }
 
 Widget gridView(BuildContext context) {
-  return GridView.count(
-    crossAxisCount: 2,
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    crossAxisSpacing: 10,
-    scrollDirection: Axis.vertical,
-    mainAxisSpacing: 10,
-    children: List<Widget>.generate(3, (index) {
-      return GridTile(
-        child: InkWell(
-          onTap: () {
-            switch (index) {
-              case 0:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListLabScreen()),
-                );
-                break;
-              case 1:
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) => const CategoryScreen()),
-                // );
-                break;
-              case 2:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const AdminAndStudentScreen()),
-                );
-                break;
 
-            }
-          },
-          child: Card(
-              color: (index == 0)
-                  ? const Color.fromARGB(255, 64, 224, 208)
-                  : (index == 1)
-                      ? const Color.fromARGB(255, 90, 200, 250)
-                      : const Color.fromARGB(255, 120, 190, 255)
-                         ,
-              child: Center(
-                child: (index == 0)
-                    ? const Text(
-                        "Labs",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      )
-                    : (index == 1)
-                        ? const Text(
-                            "Equipments",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          )
-                        : const Text(
-                                "Users",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              )
-                           ,
-              )),
+
+  return CarouselSlider(
+    items: [
+      InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context) => const ListLabScreen()) );
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                   const Icon(
+                    Icons.science,
+                    size: 72,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Discover Laboratory",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.grey[800],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          "Find and manage labs with ease",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.grey[600],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      );
-    }),
+      ),
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ListLabEquipmentScreen()),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.handyman,
+                    size: 72,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Manage Equipment",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.grey[800],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          "Add, delete or update equipment in your lab",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.grey[600],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const AdminAndStudentScreen()),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              Row(
+                children: [
+                  const Icon(
+                    Icons.person ,
+                    size: 72,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Manage Users",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.grey[800],
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            "Control user access and permissions with ease",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.grey[600],
+                            ),
+                          ),
+                        ],
+                      )),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+    options: CarouselOptions(
+      height: 155,
+      autoPlay: true,
+      enlargeCenterPage: true,
+      aspectRatio: 3,
+      viewportFraction: 0.8,
+
+    ),
   );
 }

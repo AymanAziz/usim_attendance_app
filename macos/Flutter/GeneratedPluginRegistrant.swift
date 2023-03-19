@@ -10,7 +10,7 @@ import cloud_firestore
 import firebase_app_check
 import firebase_auth
 import firebase_core
-import path_provider_macos
+import path_provider_foundation
 import shared_preferences_foundation
 import sqflite
 

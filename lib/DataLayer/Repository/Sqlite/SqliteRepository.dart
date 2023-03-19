@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:intl/src/intl/date_format.dart';
 
 import '../../Model/Sqlite/UserModel/UserModelSqlite.dart';
 import '../Firestore/User/UserRepository.dart';
@@ -142,8 +143,6 @@ class SqliteDatabase
       }
     }
 
-
-
   }
 
   Future<bool> createAttendance(currentDate,String labName) async {
@@ -185,7 +184,7 @@ class SqliteDatabase
   }
 
 
-  ///execute after user press the submit button in ComfirmCartScreen.dart
+  ///execute after user press the submit button in confirmCartScreen.dart
   ///save to sqlite for user
   // Future addEquipmentLocalDbAndFirestore(List<CartSQLite> cartSQLite) async
   // {
@@ -215,19 +214,19 @@ class SqliteDatabase
 
 
   ///get student current date attendance (for Successful page after scan qr-code)
-  // Future<UserModelSqlite> getCurrentDateAttendanceData(String labName) async
-  // {
-  //   ///get current date
-  //   final DateFormat formatter = DateFormat('yyyy-MM-dd');
-  //   DateTime startDate = DateTime.now();
-  //   var selectDateDatabase = formatter.format(startDate!);
-  //
-  //
-  //   final db = await instance.database;
-  //   userModelSQLite  userModel = await getUserDetails();
-  //   final maps = await db.rawQuery('SELECT * FROM Attendance INNER JOIN USER ON Attendance.userId = USER.id   WHERE USER.id = ? AND date= ? AND labName= ?  LIMIT 1',[userModel.id,selectDateDatabase,labName]);
-  //   return maps.map((e) => AttendanceSQLite.fromJSON(e)).first;
-  // }
+  Future<UserModelSqlite> getCurrentDateAttendanceData(String labName) async
+  {
+    ///get current date
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    DateTime startDate = DateTime.now();
+    var selectDateDatabase = formatter.format(startDate!);
+
+
+    final db = await instance.database;
+    UserModelSqlite  userModel = await getUserDetails();
+    final maps = await db.rawQuery('SELECT * FROM Attendance INNER JOIN USER ON Attendance.userId = USER.id   WHERE USER.id = ? AND date= ? AND labName= ?  LIMIT 1',[userModel.id,selectDateDatabase,labName]);
+    return maps.map((e) => UserModelSqlite.fromJSON(e)).first;
+  }
 
 
   Future createUser(UserModelSqlite reminder) async {

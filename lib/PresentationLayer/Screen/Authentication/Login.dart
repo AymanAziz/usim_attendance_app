@@ -290,7 +290,7 @@ class _Login extends State<Login> {
         color: Colors.black,
       ),
       decoration: InputDecoration(
-          contentPadding: const EdgeInsets.symmetric(vertical: 8),
+          contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           filled: true,
           fillColor: Colors.grey[200],
           border: OutlineInputBorder(

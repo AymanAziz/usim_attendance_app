@@ -38,7 +38,10 @@ class LabBloc extends Bloc<LabEvent, LabState> {
     on<RemoveLab>((event, emit) async {
       emit(LabLoading());
       await labProvider.removeLab(event.labCode);
-      emit(AddUpdateDeleteLabLoad());
+
+      ///called get list lab event again
+      add(GetListLab());
+
     });
 
   }
