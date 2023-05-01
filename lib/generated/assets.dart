@@ -25,8 +25,15 @@ class Assets {
   static const String calenderCalender = 'lib/PresentationLayer/Screen/Admin/Calender/Calender.dart';
   static const String chartUserChartModel = 'lib/DataLayer/Model/Chart/UserChartModel.dart';
   static const String checkLimitCheckLimit = 'lib/DataLayer/Repository/Firestore/CheckLimit/CheckLimit.dart';
+  static const String equipmentBlocEquipmentBloc = 'lib/Bloc/EquipmentBloc/equipment_bloc.dart';
+  static const String equipmentBlocEquipmentEvent = 'lib/Bloc/EquipmentBloc/equipment_event.dart';
+  static const String equipmentBlocEquipmentState = 'lib/Bloc/EquipmentBloc/equipment_state.dart';
+  static const String equipmentEquipemtnRepository = 'lib/DataLayer/Repository/Firestore/Equipment/EquipemtnRepository.dart';
+  static const String equipmentEquipmentProvider = 'lib/DataLayer/Provider/Equipment/EquipmentProvider.dart';
+  static const String equipmentLabModelEquipmentAdminModel = 'lib/DataLayer/Model/Firestore/EquipmentLabModel/EquipmentAdminModel.dart';
   static const String equipmentLabModelEquipmentLabModel = 'lib/DataLayer/Model/Firestore/EquipmentLabModel/EquipmentLabModel.dart';
   static const String equipmentLabModelEquipmentUserModel = 'lib/DataLayer/Model/Firestore/EquipmentLabModel/EquipmentUserModel.dart';
+  static const String equipmentLabModelListEquipmentAdminModel = 'lib/DataLayer/Model/Firestore/EquipmentLabModel/ListEquipmentAdminModel.dart';
   static const String firestoreAttendanceModelAttendanceModel = 'lib/DataLayer/Model/Firestore/AttendanceModel/attendanceModel.dart';
   static const String firestoreLabModelLabModel = 'lib/DataLayer/Model/Firestore/LabModel/LabModel.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
@@ -42,6 +49,7 @@ class Assets {
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libGeneratedAssets = 'lib/generated/assets.dart';
   static const String libMain = 'lib/main.dart';
+  static const String listEquipmentListEquipmentSpecificLabScreen = 'lib/PresentationLayer/Screen/Admin/ListEquipment/ListEquipmentSpecificLabScreen.dart';
   static const String listEquipmentListLabEquipmentScreen = 'lib/PresentationLayer/Screen/Admin/ListEquipment/ListLabEquipmentScreen.dart';
   static const String listLabLabAddScreen = 'lib/PresentationLayer/Screen/Admin/ListLab/LabAddScreen.dart';
   static const String listLabLabApproveScreen = 'lib/PresentationLayer/Screen/Admin/ListLab/LabApproveScreen.dart';

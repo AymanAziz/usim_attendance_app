@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:usim_attendance_app/PresentationLayer/Screen/Admin/ListLab/LabAddScreen.dart';
-import 'package:usim_attendance_app/PresentationLayer/Screen/Admin/ListLab/lab_update_screen.dart';
 import '../../../../Bloc/LabBloc/lab_bloc.dart';
+import 'ListEquipmentSpecificLabScreen.dart';
 
 class ListLabEquipmentScreen extends StatefulWidget {
   const ListLabEquipmentScreen({Key? key}) : super(key: key);
@@ -27,7 +25,7 @@ class _ListLabEquipmentScreenState extends State<ListLabEquipmentScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Index Labs'),
+          title: const Text('Index Laboritory'),
           backgroundColor: Theme.of(context).brightness == Brightness.dark
               ? Colors.grey[800]
               : Colors.white,
@@ -46,28 +44,36 @@ class _ListLabEquipmentScreenState extends State<ListLabEquipmentScreen> {
                   return labBloc;
                 },
               ),
-
             ],
-            child:
-            BlocBuilder<LabBloc, LabState>(builder: (context, state) {
+            child: BlocBuilder<LabBloc, LabState>(builder: (context, state) {
               if (state is LabLoading) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is ListLabLoad) {
-
                 return ListView.builder(
                     itemCount: state.listLabModel.isEmpty
                         ? 0
                         : state.listLabModel.length,
                     itemBuilder: (context, index) {
-
-
                       return GestureDetector(
-                          onTap: () {},
-                          child:  Card(
-                            color: Theme.of(context).brightness ==
-                                Brightness.dark
-                                ? const Color(0xff1F1F1F)
-                                : const Color(0xffF6F6F6),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ListEquipmentSpecificLabScreen(),
+                                  settings: RouteSettings(
+                                    arguments: {
+                                      "labCode":
+                                          state.listLabModel[index].labCode!,
+                                    },
+                                  )),
+                            );
+                          },
+                          child: Card(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? const Color(0xff1F1F1F)
+                                    : const Color(0xffF6F6F6),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
@@ -79,9 +85,9 @@ class _ListLabEquipmentScreenState extends State<ListLabEquipmentScreen> {
                                   Expanded(
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(
@@ -91,27 +97,23 @@ class _ListLabEquipmentScreenState extends State<ListLabEquipmentScreen> {
                                                 .toString(),
                                             style: const TextStyle(
                                                 fontSize: 16,
-                                                fontWeight:
-                                                FontWeight.bold),
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              left: 8, right: 8,top: 8),
+                                              left: 8, right: 8, top: 8),
                                           child: Text(
-                                            state.listLabModel[index]
-                                                .labCode
+                                            state.listLabModel[index].labCode
                                                 .toString(),
                                             style: const TextStyle(
                                                 fontSize: 14,
-                                                fontWeight:
-                                                FontWeight.normal),
+                                                fontWeight: FontWeight.normal),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-
                                 ],
                               ),
                             ),
